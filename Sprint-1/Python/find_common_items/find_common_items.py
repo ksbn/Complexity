@@ -9,13 +9,17 @@ def find_common_items(
     """
     Find common items between two arrays.
 
-    Time Complexity:
-    Space Complexity:
-    Optimal time complexity:
+    Time Complexity: O(n + m) - one pass to build Set, one pass to filter
+    Space Complexity: O(n + m) - Set stores up to m items, result stores up to n
+    Optimal time complexity: O(n + m) - every element must be visited at least once
     """
+    second_set = set(second_sequence)
+    seen = set()
     common_items: List[ItemType] = []
-    for i in first_sequence:
-        for j in second_sequence:
-            if i == j and i not in common_items:
-                common_items.append(i)
+
+    for item in first_sequence:
+        if item in second_set and item not in seen:
+            common_items.append(item)
+            seen.add(item)
+
     return common_items
